@@ -1,0 +1,4 @@
+filter.initialstate.DEFAULT=Default
+filter.initialstate.QUEUED=Queued
+filter.initialstate.STOPPED=Stopped
+filter.initialstate.FORCEDSTART=Force Start

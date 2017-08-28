@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="scanerss/ScaneRSS_AZ.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/scanerss/scanerss.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.tools.i18n"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.plugins.scanerss.main.resources"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.plugins.scanerss.main.gui"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.tools.stats"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.tools"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.tools.i18n.swt"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.plugins.scanerss.main.resources.internat"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.plugins.scanerss.azureus"/>
+        <javaElement handleIdentifier="=scanerss/&lt;lbms.plugins.scanerss.main"/>
+    </selectedElements>
+</jardesc>

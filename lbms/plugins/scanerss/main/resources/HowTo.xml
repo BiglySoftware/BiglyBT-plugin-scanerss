@@ -1,0 +1,254 @@
+<HowTo>
+<chapter title="Introduction">This is a plugin for Azureus that allows for RSS feeds to be scanned and automatically
+import any torrent that matches a user provided filter.
+</chapter>
+<chapter title="Feed Setup">Feed Setup is very simple
+	Step 1: Go to the "Feed Options" Tab
+	Step 2: Click the "New Feed" button to clear everything out
+	Step 3: Fill out a name for the feed as well as that feed's URL
+	Step 4: Give the update interval for the feed (Minimum of 15 minutes)
+	Step 5: Click the "Create Feed" button
+
+	If advanced options are needed, then fill out any that are appropiate for that feed.
+	Advanced options include:  Username,Password, Referer, User Agent, and Cookie
+
+	An advanced feature called "Link Modification allows you to replace parts of a link so
+	that you can obtain a direct download.
+
+		For example:
+			If the RSS feed yields links like this:  http://www.mininova.org/tor/1337
+			that direct you to a web page, but the real download is here: http://www.mininova.org/get/1337
+
+			Then simply use 'tor' in the 'Replace This:' field and 'get' in the 'With This' field
+
+			Beware though, if the link has the word 'torrent' in it, the 'tor' in the example above would replace
+			that as well to 'getrent'
+
+	Notes:
+		- Deselecting the checkbox by a feed's name will deactive the feed without deleting it
+		- it is possible to read local files by using file://path/file to specify the file, you can use / in Win too
+		  the refresh interval is not applied if you are reading from a local file
+
+
+</chapter>
+<chapter title="Filter Setup">A 'Filter' is a rule set that scans a feed and matches any torrents that pass the rules
+
+Notes:
+	- Filters are only applied to NEW item feeds, not to ones currently being shown
+	- A filter has to have an Accept Pattern.  This is the portion of the filter to which all feed items will be compared.
+	- A filter can also have a Deny Pattern.  Use a Deny Pattern if you wish to deny certain results that pass your Accept Pattern
+	- Each filter can only have one Accept Pattern and one Deny Pattern (Optional)
+	- An incorrectly formed Pattern will turn RED and not allow you to save it
+	- Deselecting a checkbox by a filter's name will deactive that filter, no matter if it is assigned to a feed or not
+
+To setup a filter:
+	Step 1: Go to the "Filter View" Tab
+	Step 2: Click the "New Filter" button to clear everything out
+	Step 3: Fill out a name for the filter
+
+	There are two options from here:
+
+	Step 4b: Open the Pattern Assistant by clicking on it's button
+		To get the best use out of the Pattern Assistant, it helps to have one or two Feeds set up
+		It also helps if the item you want to make a filter for is currently listed in one of your feeds
+			- Step 1:  If your desired item is listed on the left hand panel, simply double click on it.
+				This should fill out at least the Name if not both Name and Group
+				Note:  If auto fill out does not work, simply type in the name and any other unique
+				criteria you would like to filter
+			- Step 2:  Click the "Build Rule" button -- This should fill out the "Input Test Rule" and the
+				"Input Deny Rule" if you also filled out the "Exclude" item
+			- Step 3:  Click the "Test Rule" Button -- Any torrents that are currently present in your feeds
+				that match your given rules will now be displayed in the middle table.
+			- Step 4:  Modify the filter rules if desired to get the absolute result you want, then click "Insert Patterns"
+
+	Step 4a: If you know RegEx and know exactly which filter you want, you can skip using the Pattern Assistant and
+		simply fill out the Accept pattern and a Deny pattern if you wish
+
+
+	Step 5: Download History
+		If you want ScaneRSS to remember what it has downloaded then enable this feature
+
+
+		Step 5a:
+		If your feed gives your desired torrents in any of the following manner then you can use the Season/Episode section
+
+			Note: Spaces and dashes are not necessary, it needs at least one non-word character.
+			Also '0' and '1' are just placeholders and can be any number
+			S00E000 or S00E000 - S11E111
+			S00E000 - E111 or S00E000 - 111
+			00x000 or 00x000 - 11x111
+			00x000 - 111
+			000-111
+			000
+
+
+		To use this section, select "Use Download History" and simply fill out the starting point in the min Season and
+		min Episode section
+
+		If a max is desired, then fill out that section as well.
+
+		The minimum episode is depenent on the minimum season.  Likewise, the maximum episode is dependent on the
+		maximum season.  For example, if you say minimum episode 4 of season 2, then season 1 episode 4 will not be
+		downloaded.
+
+
+		** To disable these features simply put a '-1' in the field or leave it blank
+
+		For example, if you want to start downloading a series starting with Season 3 Episode 8, setup the following:
+			Min Season: 3
+			Min Episode: 8
+			Max Season: -1
+			Max Episode: -1
+
+		Another example, if you want to download a series starting with Season 2 Episode 5 automatically but do not import any
+		items that go beyond Season 3 Episode 10, you would setup the following:
+			Min Season: 2
+			Min Episode: 5
+			Max Season: 3
+			Max Episode: 10
+
+		Note:  If a Min Episode or Max Episode is given and season is left blank, then ScaneRSS will assume Season 1 by default.
+		
+		If you have a problem with the normal Episode matching you can define your custom pattern.
+
+	Step 5b:  Hash based Download History
+			If you don't want or can't use Season or Episode number, ScaneRSS can keep track of your downloads by using the
+			Hash of each torrent name it has downloaded.  Only use it with one Feed as it will treat any new name for the 
+			same torrent as a new one. To use this feature simply select the "Use Hash Based Download History"
+
+
+	Step 6: Click the "Save Fitler" button
+	Step 7: Go to the "Feed Options" Tab and click on each your first feed
+				-  You will see that the filter is now listed in the bottom table
+				-  To enable that filter for the selected feed, simply click the checkbox
+				-  Repeate for all feeds that you want to enable the filter on
+
+	At this point, ScaneRSS is fully set up and ready to automatically import any torrents that pass the filters into Azureus
+	Any torrent from a feed that passes a filter will be displayed on the "Feed View" tab
+</chapter>
+<chapter title="Manual Control">	"Feed View" tab
+		- Update button at the top will force an update of all feeds
+		- New items for feeds will be shown in red
+		- Only matches to new items will be shown in the right hand table
+		- Right clicking on a feed will bring up a menu which will allow you to manually update the feed
+		- Right clicking on a feed item will allow you to "Download" it to Azureus
+
+	"Filter View" tab
+		- Clicking on a filter will allow you to bring up it's rules.  Any changes must be committed by using the "Save Changes" button
+		- If Download History is being used, then clicking on the View Download History button will bring up a shell of every download
+		that has been retrieved for that filter.  You can uncheck a particular episode if you would like to remove it from the history.
+		The layout for the Download History shows Rows (0,1,etc.) and the Columns(0,1,etc.).
+		The row shows the 10's of the episode number.  For example:  Row 1, Column 6 would be Episode 16
+
+	"Feed View" tab
+		- Clicking on a feed will allow you to bring up it's settings.
+		- Any changes must be committed by using the "Save Changes" button
+
+</chapter>
+<chapter title="Important Notes">Some features are only working in the Azureus plugin version and not in the AzSMRC one.
+
+	-Initial State Selection
+	-Categorization
+	-AzSMRC user assignment
+</chapter>
+<chapter title="RegEx Information">All Filters are testing using RegEx (Regular Expressions)
+Detailed Summary of RegEx expressions:
+
+Characters
+x 	The character x
+\\ 	The backslash character
+\0n 	The character with octal value 0n (0 greater than or = n greater than or = 7)
+\0nn 	The character with octal value 0nn (0 greater than or = n greater than or = 7)
+\0mnn 	The character with octal value 0mnn (0 greater than or = m greater than or = 3, 0 greater than or = n greater than or = 7)
+\xhh 	The character with hexadecimal value 0xhh
+\uhhhh 	The character with hexadecimal value 0xhhhh
+\t 	The tab character ('\u0009')
+\n 	The newline (line feed) character ('\u000A')
+\r 	The carriage-return character ('\u000D')
+\f 	The form-feed character ('\u000C')
+\a 	The alert (bell) character ('\u0007')
+\e 	The escape character ('\u001B')
+\cx 	The control character corresponding to x
+
+Character classes
+[abc] 	a, b, or c (simple class)
+[^abc] 	Any character except a, b, or c (negation)
+[a-zA-Z] 	a through z or A through Z, inclusive (range)
+[a-d[m-p]] 	a through d, or m through p: [a-dm-p] (union)
+
+
+Predefined character classes
+. 	Any character (may or may not match line terminators)
+\d 	A digit: [0-9]
+\D 	A non-digit: [^0-9]
+\s 	A whitespace character: [ \t\n\x0B\f\r]
+\S 	A non-whitespace character: [^\s]
+\w 	A word character: [a-zA-Z_0-9]
+\W 	A non-word character: [^\w]
+
+Boundary matchers
+^ 	The beginning of a line
+$ 	The end of a line
+\b 	A word boundary
+\B 	A non-word boundary
+\A 	The beginning of the input
+\G 	The end of the previous match
+\Z 	The end of the input but for the final terminator, if any
+\z 	The end of the input
+
+Greedy quantifiers
+X? 	X, once or not at all
+X* 	X, zero or more times
+X+ 	X, one or more times
+X{n} 	X, exactly n times
+X{n,} 	X, at least n times
+X{n,m} 	X, at least n but not more than m times
+
+Reluctant quantifiers
+X?? 	X, once or not at all
+X*? 	X, zero or more times
+X+? 	X, one or more times
+X{n}? 	X, exactly n times
+X{n,}? 	X, at least n times
+X{n,m}? 	X, at least n but not more than m times
+
+Possessive quantifiers
+X?+ 	X, once or not at all
+X*+ 	X, zero or more times
+X++ 	X, one or more times
+X{n}+ 	X, exactly n times
+X{n,}+ 	X, at least n times
+X{n,m}+ 	X, at least n but not more than m times
+
+Logical operators
+XY 	X followed by Y
+X|Y 	Either X or Y
+(X) 	X, as a capturing group
+
+Back references
+\n 	Whatever the nth capturing group matched
+
+Quotation
+\ 	Nothing, but quotes the following character
+\Q 	Nothing, but quotes all characters until \E
+\E 	Nothing, but ends quoting started by \Q
+
+Backslashes, escapes, and quoting
+The backslash character ('\') serves to introduce escaped constructs, as defined in the table above,
+as well as to quote characters that otherwise would be interpreted as unescaped constructs. Thus the
+expression \\ matches a single backslash and \{ matches a left brace.
+
+It is an error to use a backslash prior to any alphabetic character that does not denote an escaped
+construct; these are reserved for future extensions to the regular-expression language. A backslash
+may be used prior to a non-alphabetic character regardless of whether that character is part of an
+unescaped construct.
+
+Backslashes within string literals in Java source code are interpreted as required by the
+Java Language Specification as either Unicode escapes or other character escapes. It is therefore
+necessary to double backslashes in string literals that represent regular expressions to protect
+them from interpretation by the Java bytecode compiler. The string literal "\b", for example, matches
+a single backspace character when interpreted as a regular expression, while "\\b" matches a word
+boundary. The string literal "\(hello\)" is illegal and leads to a compile-time error; in order to
+match the string (hello) the string literal "\\(hello\\)" must be used.
+</chapter>
+</HowTo>
