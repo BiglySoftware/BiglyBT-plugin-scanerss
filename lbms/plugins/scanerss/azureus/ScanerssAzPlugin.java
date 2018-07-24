@@ -135,8 +135,16 @@ public class ScanerssAzPlugin implements UnloadablePlugin {
 		enableLog.addEnabledOnSelection(logFile);
 		config_model.addBooleanParameter2("useCustomFeedIcons",
 				"scanerss.useCustomFeedIcons", true);
-		config_model.addBooleanParameter2("handle.manually.added.torrents",
+		
+		BooleanParameter man = config_model.addBooleanParameter2("handle.manually.added.torrents",
 				"scanerss.handle.manually.added.torrents", true);
+		
+		
+		BooleanParameter mt = config_model.addBooleanParameter2("handle.manually.added.torrents.tag",
+				"scanerss.handle.manually.added.torrents.tag", true);
+		
+		man.addEnabledOnSelection( mt );
+		
 		config_model.addLabelParameter2("scanerss.statistics.label");
 		config_model.addBooleanParameter2("statistics.allow",
 				"scanerss.statistics.allow", true);
@@ -317,7 +325,10 @@ public class ScanerssAzPlugin implements UnloadablePlugin {
 												+ renameTo);
 							}
 
-							if (category_or_tag_name != null) {
+							boolean tagManually = 
+									pluginInterface.getPluginconfig().getPluginBooleanParameter( "handle.manually.added.torrents.tag");
+							
+							if (category_or_tag_name != null && tagManually ) {
 								
 								if ( CategoryManager.getCategory( category_or_tag_name ) == null ){
 									
